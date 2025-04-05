@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A Surprise Invitation</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="invite-container">
+    <div class="invite-card">
+      <h1>You have been invited!</h1>
+      <p class="subtitle">This is an invitation to a very special event</p>
+
+      <button id="toggleButton">Show</button>
+
+      <div class="details" id="details">
+        <p><strong>Event:</strong> A surprise!</p>
+        <p><strong>Date:</strong> April 12th, 2025</p>
+        <p><strong>Time:</strong> 3:00 PM</p>
+        <p><strong>Location:</strong> 6240 Post Rd, Cumming, GA 30040, USA</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const toggleButton = document.getElementById("toggleButton");
+    const details = document.getElementById("details");
+
+    toggleButton.addEventListener("click", () => {
+      details.classList.toggle("show");
+      toggleButton.textContent = details.classList.contains("show") ? "Hide" : "Show";
+    });
+  </script>
+</body>
+</html>
