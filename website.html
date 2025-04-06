@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>A Surprise Invitation</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <audio src="Someone to Call Mine.mp3">
   <div class="invite-container">
     <div class="invite-card">
+      <audio id="myAudio" loop>
+        <source src="stcm.mp3" type="audio/mpeg" />
+        Your browser does not support the audio element.
+      </audio>
+
+
       <h1>You have been invited, Seaweed Brain.</h1>
       <p class="subtitle">A specific Wise Guy sends you this.</p>
 
@@ -23,16 +28,23 @@
       </div>
     </div>
   </div>
-  </audio>
 
   <script>
-    const toggleButton = document.getElementById("toggleButton");
-    const details = document.getElementById("details");
+  const toggleButton = document.getElementById("toggleButton");
+  const details = document.getElementById("details");
+  const audio = document.getElementById("myAudio");
 
-    toggleButton.addEventListener("click", () => {
-      details.classList.toggle("show");
-      toggleButton.textContent = details.classList.contains("show") ? "Hide" : "Show";
-    });
-  </script>
+  toggleButton.addEventListener("click", () => {
+    const isShowing = details.classList.toggle("show");
+    toggleButton.textContent = isShowing ? "Hide" : "Show";
+
+    if (isShowing && audio.paused) {
+      audio.play().catch((e) => {
+        console.warn("Audio couldn't play automatically:", e);
+      });
+    }
+  });
+</script>
+
 </body>
 </html>
